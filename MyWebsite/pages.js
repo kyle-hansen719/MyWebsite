@@ -6,8 +6,4 @@ router.get('/', (req, res) => {
     res.sendFile(`${__dirname}/views/index.html`);
 });
 
-router.get('/test', (req, res) => {
-    res.send('<h1>loaded</h1>');
-});
-
 module.exports = router;

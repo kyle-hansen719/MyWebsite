@@ -33,6 +33,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="package.json" />
+    <Content Include="public\favicon.ico" />
     <Content Include="public\javascript\script.js">
       <SubType>Code</SubType>
     </Content>
@@ -43,7 +44,6 @@
     <Content Include="views\index.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="modules\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascript\" />
