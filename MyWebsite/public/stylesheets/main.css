@@ -26,3 +26,10 @@
     margin-right: auto;
     width: 75%;
 }
+
+.latest-work {
+    background-color: black;
+    background-image: url(https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000394/GSFC_20171208_Archive_e000394~small.jpg);
+    /*Hubble Sees a Legion of Galaxies*/
+    color: white;
+}
