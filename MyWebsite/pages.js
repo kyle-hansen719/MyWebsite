@@ -5,8 +5,4 @@ router.get('/', (req, res) => {
     res.sendFile(`${__dirname}/views/index.html`);
 });
 
-router.get('/test', (req, res) => {
-    res.sendFile(`${__dirname}/views/index-test.html`);
-});
-
 module.exports = router;
