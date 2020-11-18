@@ -1,19 +1,16 @@
 {
-  "name": "mywebsite",
-  "version": "1.0.0",
-  "description": "My website using [Node.js](https://nodejs.org/en/) and [Express](http://expressjs.com/)",
-  "main": "index.js",
+  "name": "my-website",
+  "version": "0.0.0",
+  "description": "MyWebsite",
+  "main": "MyWebsite/app.js",
+  "author": "Kyle",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Guzzard69/MyWebsite.git"
-  },
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Guzzard69/MyWebsite/issues"
-  },
-  "homepage": "https://github.com/Guzzard69/MyWebsite#readme"
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "serve-favicon": "^2.5.0"
+  }
 }
