@@ -1,0 +1,19 @@
+{
+  "name": "mywebsite",
+  "version": "1.0.0",
+  "description": "My website using [Node.js](https://nodejs.org/en/) and [Express](http://expressjs.com/)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guzzard69/MyWebsite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Guzzard69/MyWebsite/issues"
+  },
+  "homepage": "https://github.com/Guzzard69/MyWebsite#readme"
+}
