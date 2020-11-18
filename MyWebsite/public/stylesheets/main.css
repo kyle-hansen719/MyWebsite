@@ -33,3 +33,18 @@
     /*Hubble Sees a Legion of Galaxies*/
     color: white;
 }
+
+.planet-image{
+    height: 100px;
+    width: 100px;
+}
+
+hr{
+    width: 65%;
+}
+
+/*
+* {
+    border: 1px solid red;
+}
+*/
