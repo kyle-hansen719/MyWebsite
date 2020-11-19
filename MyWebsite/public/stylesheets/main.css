@@ -6,17 +6,11 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    background-size: cover;
     background-position: center;
 }
 
 .top-heading {
     font-size: 4em;
-    text-align: center;
-}
-
-.main-text {
-    font-size: 20px;
     text-align: center;
 }
 
@@ -27,24 +21,28 @@
     width: 75%;
 }
 
-.latest-work {
+.favorite-technologies {
     background-color: black;
     background-image: url(https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000394/GSFC_20171208_Archive_e000394~small.jpg);
-    /*Hubble Sees a Legion of Galaxies*/
     color: white;
-}
-
-.planet-image{
-    height: 100px;
-    width: 100px;
 }
 
 hr{
     width: 65%;
 }
 
-/*
-* {
-    border: 1px solid red;
+.nav-item{
+    font-size: 150%;
 }
-*/
+
+.text{
+    font-size: 125%;
+}
+
+.navbar{
+    background-color: black;
+}
+
+.pokemon-element{
+    width: 100%;
+}
