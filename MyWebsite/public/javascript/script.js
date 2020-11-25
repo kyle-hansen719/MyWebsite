@@ -89,3 +89,11 @@ document.querySelector('#anotherButton').addEventListener('click', () => {
         document.querySelector('#response').innerHTML = 'Wrong';
     }
 });
+
+//adds enter to click submit button
+document.querySelector('#pokemonBox').addEventListener('keydown', (e) => {
+    if (e.keyCode === 13) {
+        event.preventDefault();
+        document.querySelector('#anotherButton').click();
+    }
+});
