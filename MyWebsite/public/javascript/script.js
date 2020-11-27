@@ -1,3 +1,5 @@
+'use strict'
+
 //text animation
 let counter = 0;
 let letterArray = [];
@@ -33,7 +35,7 @@ setInterval(Write, 50);
 //Pokemon Logic
 let pokemonName;
 let totalScore = 0;
-let totalPokemon = 0;
+let totalPokemon = 1;
 let hasScored = false;
 
 const getPokemon = () => {
@@ -60,11 +62,22 @@ const getPokemon = () => {
 }
 getPokemon();
 
+const Post = () => {
+    let request = new XMLHttpRequest;
+    request.open('POST', '/api');
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(JSON.stringify({
+        "pokemon_score": totalScore,
+        "total_pokemon": totalPokemon
+    }));
+}
+
 //checks if the submission is a new correct answer and upticks score
 const UpScore = () => {
     if (!hasScored) {
         totalScore++;
         document.querySelector('#score').innerHTML = `Score: ${totalScore}`;
+        Post();
     }
 }
 
@@ -75,7 +88,8 @@ document.querySelector("#pokemonButton").addEventListener('click', () => {
 
     //changes total pokemon number
     totalPokemon++;
-    document.querySelector('#totalPokemon').innerHTML = `Pokemon: ${totalPokemon + 1}`;
+    document.querySelector('#totalPokemon').innerHTML = `Pokemon: ${totalPokemon}`;
+    Post();
 });
 
 //checks whether the submission is correct
