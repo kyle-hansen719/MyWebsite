@@ -1,5 +1,8 @@
 'use strict'
 
+//change this:
+const userID = 1;
+
 //text animation
 let counter = 0;
 let letterArray = [];
@@ -67,6 +70,7 @@ const Post = () => {
     request.open('POST', '/api');
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(JSON.stringify({
+        "user_id": userID,
         "pokemon_score": totalScore,
         "total_pokemon": totalPokemon
     }));

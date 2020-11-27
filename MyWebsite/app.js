@@ -16,24 +16,25 @@ const client = new Client({
 });
 client.connect();
 
-//client.query('INSERT INTO pokemon', (err, res) => {
-//    if (err) throw err;
-//    client.end();
-//});
-
 app.use(bodyParser.json());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', pages);
 
 app.post('/api', (req, res) => {
-    console.log(`Post Data: ${JSON.stringify(req.body)}`);
+    console.log(`Post User ID: ${req.body.user_id}`);
     console.log(`Post Score: ${req.body.pokemon_score}`);
     console.log(`Post Total Pokemon: ${req.body.total_pokemon}`);
 
-    client.query(`INSERT INTO testpokemon (score, totalpokemon) VALUES (${parseInt(req.body.pokemon_score)}, ${parseInt(req.body.total_pokemon)});`, (err, res) => {
+    //client.query(`INSERT INTO testpokemon (id, score, totalpokemon) VALUES (${parseInt(req.body.user_id)}, ${parseInt(req.body.pokemon_score)}, ${parseInt(req.body.total_pokemon)});`, (err, res) => {
+    //    if (err) console.error(err);
+    //    //client.end();
+    //});
+
+    //--UPDATE testpokemon SET score=5,totalpokemon=10 WHERE id=1;
+    const query = `UPDATE testpokemon SET score=${parseInt(req.body.pokemon_score)},totalpokemon=${parseInt(req.body.total_pokemon)} WHERE id=${parseInt(req.body.user_id)}`;
+    client.query(query, (err, res) => {
         if (err) console.error(err);
-        //client.end();
     });
 });
 
