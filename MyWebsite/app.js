@@ -26,12 +26,6 @@ app.post('/api', (req, res) => {
     console.log(`Post Score: ${req.body.pokemon_score}`);
     console.log(`Post Total Pokemon: ${req.body.total_pokemon}`);
 
-    //client.query(`INSERT INTO testpokemon (id, score, totalpokemon) VALUES (${parseInt(req.body.user_id)}, ${parseInt(req.body.pokemon_score)}, ${parseInt(req.body.total_pokemon)});`, (err, res) => {
-    //    if (err) console.error(err);
-    //    //client.end();
-    //});
-
-    //--UPDATE testpokemon SET score=5,totalpokemon=10 WHERE id=1;
     const query = `UPDATE testpokemon SET score=${parseInt(req.body.pokemon_score)},totalpokemon=${parseInt(req.body.total_pokemon)} WHERE id=${parseInt(req.body.user_id)}`;
     client.query(query, (err, res) => {
         if (err) console.error(err);

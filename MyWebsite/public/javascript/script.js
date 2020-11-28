@@ -34,12 +34,32 @@ const Write = () => {
 }
 setInterval(Write, 50);
 
-
 //Pokemon Logic
 let pokemonName;
 let totalScore = 0;
 let totalPokemon = 1;
 let hasScored = false;
+
+//google signin
+function onSignIn(googleUser) {
+    const profile = googleUser.getBasicProfile();
+    const id_token = googleUser.getAuthResponse().id_token;
+
+    console.log(`Login Successful, Name: ${profile.getName()}`);
+
+    let request = new XMLHTTPRequest;
+    request.open('GET', `/api?id=${id_token}`);
+    request.send();
+    request.onload = () => {
+        let response = JSON.parse(request.responseText);
+        totalScore = response.score;
+        document.querySelector('#score').innerHTML = `Score: ${totalScore}`;
+
+        totalPokemon = response.totalPokemon;
+        document.querySelector('#totalPokemon').innerHTML = `Pokemon: ${totalPokemon}`;
+    };
+
+};
 
 const getPokemon = () => {
     let request = new XMLHttpRequest;
