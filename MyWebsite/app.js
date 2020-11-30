@@ -13,7 +13,6 @@ const app = express();
 
 const { Client } = require('pg');
 const client = new Client({
-    //remove this before pushing
     connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false
