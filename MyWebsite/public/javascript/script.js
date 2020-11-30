@@ -1,5 +1,9 @@
 'use strict'
 
+//change this:
+const userID = '1';
+//change userID to equal -1
+
 //text animation
 let counter = 0;
 let letterArray = [];
@@ -31,19 +35,40 @@ const Write = () => {
 }
 setInterval(Write, 50);
 
-
 //Pokemon Logic
 let pokemonName;
 let totalScore = 0;
 let totalPokemon = 1;
 let hasScored = false;
+let hasSignedIn = false;
+
+//google signin
+function onSignIn(googleUser) {
+    //const profile = googleUser.getBasicProfile();
+    //userID = googleUser.getAuthResponse().id_token;
+    hasSignedIn = true;
+
+    //requests score and total pokemon from database
+    let request = new XMLHttpRequest;
+    request.open('GET', `/api/id/${userID}`);
+    request.send();
+    request.onload = () => {
+        let response = JSON.parse(request.responseText);
+        totalScore = response.score;
+        document.querySelector('#score').innerHTML = `Score: ${totalScore}`;
+
+        totalPokemon = response.totalpokemon;
+        document.querySelector('#totalPokemon').innerHTML = `Pokemon: ${totalPokemon}`;
+    };
+
+};
 
 const getPokemon = () => {
     let request = new XMLHttpRequest;
     request.open('GET', `https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 893) + 1}`)
     request.send();
 
-    //shows loading gid and clears submission box
+    //shows loading gif and clears submission box
     document.querySelector('#loading').src = '/images/loading.gif';
     document.querySelector('#pokemonBox').value = '';
 
@@ -62,14 +87,21 @@ const getPokemon = () => {
 }
 getPokemon();
 
+//posts score and total pokemon to database
 const Post = () => {
-    let request = new XMLHttpRequest;
-    request.open('POST', '/api');
-    request.setRequestHeader('Content-Type', 'application/json');
-    request.send(JSON.stringify({
-        "pokemon_score": totalScore,
-        "total_pokemon": totalPokemon
-    }));
+    if (hasSignedIn) {
+        let request = new XMLHttpRequest;
+        request.open('POST', '/api');
+        request.setRequestHeader('Content-Type', 'application/json');
+
+        if (userID != -1) {
+            request.send(JSON.stringify({
+                "user_id": userID,
+                "pokemon_score": totalScore,
+                "total_pokemon": totalPokemon
+            }));
+        }
+    }
 }
 
 //checks if the submission is a new correct answer and upticks score

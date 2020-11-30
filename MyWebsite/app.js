@@ -1,3 +1,8 @@
+//TO DO:
+//make guard clauses when userID = -1 (front end)
+//make google sign in
+//add clear account button
+
 require('dotenv').config();
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -9,33 +14,42 @@ const app = express();
 const { Client } = require('pg');
 const client = new Client({
     //remove this before pushing
-    connectionString: process.env.DATABASE_URL || 'postgres://zvjeomarwocyuy:ce46dce9c71f968b8f318f0955b2cbcb8310b755a40e1731c95e91b1549af327@ec2-54-166-114-48.compute-1.amazonaws.com:5432/dc3965rfdnv7k5',
+    connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false
     }
 });
-client.connect();
-
-//client.query('INSERT INTO pokemon', (err, res) => {
-//    if (err) throw err;
-//    client.end();
-//});
+client.connect(err => {
+    if (err) console.error(err);
+    console.log('Connected to Database');
+});
 
 app.use(bodyParser.json());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', pages);
 
+//handles posting of score and total pokemon
 app.post('/api', (req, res) => {
-    console.log(`Post Data: ${JSON.stringify(req.body)}`);
+    console.log(`Post User ID: ${req.body.user_id}`);
     console.log(`Post Score: ${req.body.pokemon_score}`);
     console.log(`Post Total Pokemon: ${req.body.total_pokemon}`);
 
-    client.query(`INSERT INTO testpokemon (score, totalpokemon) VALUES (${parseInt(req.body.pokemon_score)}, ${parseInt(req.body.total_pokemon)});`, (err, res) => {
+    const query = `UPDATE testpokemon SET score=${parseInt(req.body.pokemon_score)},totalpokemon=${parseInt(req.body.total_pokemon)} WHERE id=${parseInt(req.body.user_id)}`;
+    client.query(query, (err, res) => {
         if (err) console.error(err);
-        //client.end();
     });
 });
 
+//handles get request for score and total pokemon
+app.get('/api/id/:id', (req, res) => {
+    const query = `SELECT * FROM testpokemon WHERE id=${req.params.id};`;
+    client.query(query, (err, queryRes) => {
+        if (err) console.error(err);
+        res.send(JSON.stringify(queryRes.rows[0]));
+    });
+});
+
+//const port = 3000;
 const port = process.env.PORT || 3000;
 app.listen(port, console.log(`listening on port ${port}`));
