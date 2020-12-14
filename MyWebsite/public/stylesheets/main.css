@@ -45,6 +45,7 @@
 
 hr {
     width: 65%;
+    color: lightgray;
 }
 
 .nav-item{
@@ -61,4 +62,8 @@ hr {
 
 .pokemon-element{
     width: 100%;
+}
+
+.bruh {
+    border-right: 1px solid lightgray;
 }
