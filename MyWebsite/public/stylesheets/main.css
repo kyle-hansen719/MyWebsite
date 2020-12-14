@@ -1,24 +1,8 @@
-@media (min-width: 992px) {
-    .favorite-technologies {
-        padding-top: 100px;
-        height: 500px;
-    }
-
-    .about-me{
-        padding-top: 80px;
-        height: 350px;
-    }
-}
-
 .hero-section {
-    background-image: url(https://images-assets.nasa.gov/image/as11-44-6551/as11-44-6551~orig.jpg);
+    background-image: url(https://www.gstatic.com/earth/social/00_generic_facebook-001.jpg);
     color: white;
-    height: 550px;
-    padding-top: 12%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
+    padding-top: 50px;
+    height: 300px;
 }
 
 .top-heading {
@@ -26,10 +10,11 @@
     text-align: center;
 }
 
-#animation-text{
+#animation-text {
     margin-left: auto;
     margin-right: auto;
     font-size: 150%;
+    width: 75%;
 }
 
 .favorite-technologies {
@@ -48,22 +33,49 @@ hr {
     color: lightgray;
 }
 
-.nav-item{
+.nav-item {
     font-size: 150%;
 }
 
-.text{
+.text {
     font-size: 125%;
 }
 
-.navbar{
+.navbar {
     background-color: black;
 }
 
-.pokemon-element{
+.pokemon-element {
     width: 100%;
 }
 
-.bruh {
-    border-right: 1px solid lightgray;
+.contact-button {
+    font-size: 25px !important;
+}
+
+@media (min-width: 992px) {
+    .favorite-technologies {
+        padding-top: 100px;
+        height: 500px;
+    }
+
+    .about-me {
+        padding-top: 60px;
+        height: 350px;
+    }
+
+    .bruh {
+        border-right: 1px solid lightgray;
+    }
+
+    .hero-section {
+        background-image: url(https://images-assets.nasa.gov/image/as11-44-6551/as11-44-6551~orig.jpg);
+        color: white;
+        height: 550px;
+        padding-top: 12%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+    }
 }
