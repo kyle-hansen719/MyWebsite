@@ -29,9 +29,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="app.js" />
-    <Content Include="pages.js">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="package.json" />
     <Content Include="public\favicon.ico" />
     <Content Include="public\javascript\script.js">

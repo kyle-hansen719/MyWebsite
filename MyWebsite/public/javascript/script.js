@@ -1,9 +1,5 @@
 'use strict'
 
-//change this:
-const userID = '1';
-//change userID to equal -1
-
 //text animation
 let counter = 0;
 let letterArray = [];
@@ -40,28 +36,6 @@ let pokemonName;
 let totalScore = 0;
 let totalPokemon = 1;
 let hasScored = false;
-let hasSignedIn = false;
-
-//google signin
-function onSignIn(googleUser) {
-    //const profile = googleUser.getBasicProfile();
-    //userID = googleUser.getAuthResponse().id_token;
-    hasSignedIn = true;
-
-    //requests score and total pokemon from database
-    let request = new XMLHttpRequest;
-    request.open('GET', `/api/id/${userID}`);
-    request.send();
-    request.onload = () => {
-        let response = JSON.parse(request.responseText);
-        totalScore = response.score;
-        document.querySelector('#score').innerHTML = `Score: ${totalScore}`;
-
-        totalPokemon = response.totalpokemon;
-        document.querySelector('#totalPokemon').innerHTML = `Pokemon: ${totalPokemon}`;
-    };
-
-};
 
 const getPokemon = () => {
     let request = new XMLHttpRequest;
@@ -87,29 +61,11 @@ const getPokemon = () => {
 }
 getPokemon();
 
-//posts score and total pokemon to database
-const Post = () => {
-    if (hasSignedIn) {
-        let request = new XMLHttpRequest;
-        request.open('POST', '/api');
-        request.setRequestHeader('Content-Type', 'application/json');
-
-        if (userID != -1) {
-            request.send(JSON.stringify({
-                "user_id": userID,
-                "pokemon_score": totalScore,
-                "total_pokemon": totalPokemon
-            }));
-        }
-    }
-}
-
 //checks if the submission is a new correct answer and upticks score
 const UpScore = () => {
     if (!hasScored) {
         totalScore++;
         document.querySelector('#score').innerHTML = `Score: ${totalScore}`;
-        Post();
     }
 }
 
@@ -121,7 +77,6 @@ document.querySelector("#pokemonButton").addEventListener('click', () => {
     //changes total pokemon number
     totalPokemon++;
     document.querySelector('#totalPokemon').innerHTML = `Pokemon: ${totalPokemon}`;
-    Post();
 });
 
 //checks whether the submission is correct
@@ -143,3 +98,4 @@ document.querySelector('#pokemonBox').addEventListener('keydown', (e) => {
         document.querySelector('#anotherButton').click();
     }
 });
+
