@@ -1,5 +1,3 @@
-//TO DO:
-
 require('dotenv').config();
 const path = require('path');
 const favicon = require('serve-favicon');
