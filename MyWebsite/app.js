@@ -15,8 +15,13 @@ app.use(express.urlencoded({
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//serving page
 app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/views/index.html`);
+});
+
+app.get('/EmailSuccess', (req, res) => {
+    res.sendFile(`${__dirname}/views/EmailSuccess.html`);
 });
 
 //sending emails
@@ -34,7 +39,7 @@ app.post('/', (req, res) => {
         console.error(error)
     })
 
-    res.status(200).redirect('/');
+    res.status(200).redirect('/EmailSuccess');
 });
 
 
