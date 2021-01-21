@@ -39,4 +39,4 @@ app.post('/', (req, res) => {
 
 
 const port = process.env.PORT || 3000;
-app.listen(port, console.log(`listening on port ${PORT}`));
+app.listen(port, console.log(`listening on port ${port}`));
