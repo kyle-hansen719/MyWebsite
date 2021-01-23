@@ -38,6 +38,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="README.md" />
+    <Content Include="views\EmailSuccess.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\index.html" />
   </ItemGroup>
   <ItemGroup>
