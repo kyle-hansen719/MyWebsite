@@ -38,11 +38,13 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="README.md" />
+    <Content Include="views\EmailSuccess.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\index.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
-    <Folder Include="public\images\" />
     <Folder Include="public\javascript\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="views\" />
