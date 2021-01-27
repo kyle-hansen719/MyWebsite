@@ -24,6 +24,10 @@ app.get('/EmailSuccess', (req, res) => {
     res.sendFile(`${__dirname}/views/EmailSuccess.html`);
 });
 
+app.get('/resume', (req, res) => {
+    res.sendFile(`${__dirname}/public/kyles-resume.pdf`)
+});
+
 //sending emails
 app.post('/', (req, res) => {
     const msg = {
