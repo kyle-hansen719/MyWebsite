@@ -59,7 +59,7 @@ app.post('/', (req, res) => {
 
 app.get(`/test`, async (req, res) => {
     let response = await invokeLambdaFunc('test');
-    res.send(response);
+    res.send(JSON.parse(response.Payload));
 });
 
 // Lambda Stuff.
