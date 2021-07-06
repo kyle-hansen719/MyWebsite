@@ -1,6 +1,6 @@
 require('dotenv').config();
 const fs = require('fs');
-const developmentEnv = JSON.parse(fs.readFileSync('env.json')) || {};
+const developmentEnv = JSON.parse(fs.readFileSync('env.json') || '{}');
 
 const path = require('path');
 const favicon = require('serve-favicon');
