@@ -1,7 +1,7 @@
 require('dotenv').config();
 const fs = require('fs');
 
-const developmentEnv = process.env.AWS_ACCESS_KEY_ID != undefined ? JSON.parse(fs.readFileSync('env.json')) : {};
+const developmentEnv = process.env.AWS_ACCESS_KEY_ID == undefined ? JSON.parse(fs.readFileSync('env.json')) : {};
 
 const path = require('path');
 const favicon = require('serve-favicon');
