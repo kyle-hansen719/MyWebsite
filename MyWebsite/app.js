@@ -1,15 +1,18 @@
 require('dotenv').config();
+const fs = require('fs');
+const developmentEnv = JSON.parse(fs.readFileSync('env.json'));
+
 const path = require('path');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 
-let AWS = require('aws-sdk');
+const AWS = require('aws-sdk');
 AWS.config.region = 'us-east-1';
-AWS.config.accessKeyId = '';
-AWS.config.secretAccessKey = '';
-let lambda = new AWS.Lambda();
+AWS.config.accessKeyId = developmentEnv.AWS_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID;
+AWS.config.secretAccessKey = developmentEnv.AWS_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY;
+const lambda = new AWS.Lambda();
 
 const sgMail = require('@sendgrid/mail');
 const { exception } = require('console');
@@ -54,7 +57,7 @@ app.post('/', (req, res) => {
 });
 
 app.get(`/test`, async (req, res) => {
-    var response = await invokeLambdaFunc('test');
+    let response = await invokeLambdaFunc('test');
     console.log(response);
 });
 
