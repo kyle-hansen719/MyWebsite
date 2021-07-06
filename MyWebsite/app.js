@@ -5,7 +5,14 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 
+let AWS = require('aws-sdk');
+AWS.config.region = 'us-east-1';
+AWS.config.accessKeyId = '';
+AWS.config.secretAccessKey = '';
+let lambda = new AWS.Lambda();
+
 const sgMail = require('@sendgrid/mail');
+const { exception } = require('console');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 app.use(bodyParser.json());
@@ -15,7 +22,7 @@ app.use(express.urlencoded({
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//serving page
+// Serving pages
 app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/views/index.html`);
 });
@@ -28,7 +35,7 @@ app.get('/resume', (req, res) => {
     res.sendFile(`${__dirname}/public/kyles-resume.pdf`)
 });
 
-//sending emails
+// Sending emails.
 app.post('/', (req, res) => {
     const msg = {
         to: 'khan7192020@gmail.com',
@@ -46,6 +53,20 @@ app.post('/', (req, res) => {
     res.status(200).redirect('/EmailSuccess');
 });
 
+app.get(`/test`, async (req, res) => {
+    var response = await invokeLambdaFunc('test');
+    console.log(response);
+});
+
+// Lambda Stuff.
+const invokeLambdaFunc = async (functionName, payload = {}) => {
+    var params = {
+        FunctionName: functionName,
+        Payload: JSON.stringify(payload)
+    };
+
+    return await lambda.invoke(params).promise();
+}
 
 const port = process.env.PORT || 3000;
 app.listen(port, console.log(`listening on port ${port}`));
