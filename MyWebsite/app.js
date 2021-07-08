@@ -7,6 +7,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
 const AWS = require('aws-sdk');
@@ -57,7 +58,7 @@ app.post('/', (req, res) => {
     res.status(200).redirect('/EmailSuccess');
 });
 
-app.get(`/test`, async (req, res) => {
+app.get(`/test`, cors(), async (req, res) => {
     let response = await invokeLambdaFunc('test');
     res.send(JSON.parse(response.Payload));
 });
