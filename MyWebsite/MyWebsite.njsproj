@@ -34,6 +34,7 @@
     <Content Include="public\javascript\script.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="public\kyles-resume.pdf" />
     <Content Include="public\stylesheets\main.css">
       <SubType>Code</SubType>
     </Content>
